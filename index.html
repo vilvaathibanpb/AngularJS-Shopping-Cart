@@ -1,0 +1,31 @@
+<html ng-app="shoppingCart_app">
+<head>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <!--<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/> https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css-->
+    <link rel="stylesheet" type="text/css" href="css/shoppingcart.css"/>
+    <style>
+    /*.btn:focus,.btn:active {
+       outline: none !important;
+    }*/
+    </style>
+</head>
+<body ng-controller="home_controller">
+    <div class="container">
+    <div class="well well-sm">
+        <div style="text-align:right;padding:0px;">
+            <div class="container">
+                <span class="pull-left" style="padding:10px;font-size:28px;"><strong>Shopping Cart</strong></span>
+                <button class="btn btn-default btn-lg btn-link" style="font-size:36px;">
+                    <a href="#/cart"><span class="glyphicon glyphicon-shopping-cart"></span></a>
+                </button>
+                <span class="badge badge-notify">4</span>
+            </div>
+        </div>
+    </div>
+    <ng-view></ng-view>
+    </div>
+    <script src="lib/js/angular.min.js"></script>
+    <script src="lib/js/angular-route.min.js"></script>
+    <script src="controllers/shopping_cart_controller.js"></script>
+    </body>
+</html>
