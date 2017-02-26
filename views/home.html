@@ -18,7 +18,7 @@
                 <p class="group inner list-group-item-text" ng-bind="product.product_desc"></p>
                 <div class="row">
                     <div class="col-xs-12 col-md-6">
-                        <p class="lead" ng-bind="product.product_price"></p>
+                        <p class="lead">$ <span ng-bind="product.product_price"></span></p>
                     </div>
                     <div class="col-xs-12 col-md-6">
                         <a class="btn btn-success" href="" ng-click="addtocart(product.product_id)">Add to cart</a>
