@@ -1,0 +1,42 @@
+[{
+    "product_id":"1234",
+    "product_title":"Laptop",
+    "product_desc":"Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.",
+    "product_price":21,
+    "product_url":"assets/img/img.jpg"
+    },
+    {
+        "product_id":"1235",
+        "product_title":"Black Royal Shoe",
+        "product_desc":"Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.",
+        "product_price":30,
+        "product_url":"assets/img/image.jpg"
+    },
+    {
+        "product_id":"1236",
+        "product_title":"Desktop",
+        "product_desc":"Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.",
+        "product_price":100,
+        "product_url":"assets/img/images.jpg"
+    },
+    {
+        "product_id":"1238",
+        "product_title":"Desktop",
+        "product_desc":"Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.",
+        "product_price":200,
+        "product_url":"assets/img/images.jpg"
+    },
+    {
+        "product_id":"1240",
+        "product_title":"Laptop",
+        "product_desc":"Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.",
+        "product_price":70,
+        "product_url":"assets/img/img.jpg"
+    },
+    {
+        "product_id":"1243",
+        "product_title":"Black Shoe",
+        "product_desc":"Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.",
+        "product_price":50,
+        "product_url":"assets/img/image.jpg"
+    }]
