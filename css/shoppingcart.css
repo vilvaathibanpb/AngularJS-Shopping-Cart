@@ -55,10 +55,18 @@
 {
     margin: 0 0 11px;
 }
-/* CSS used here will be applied after bootstrap.css */
 .badge-notify{
    background:red;
    position:relative;
    top: -20px;
    left: -35px;
+  }
+  .qty-btn{
+      border-radius: 50%; 
+      background-color: #ffffff; 
+      border-color: #303030 ;  
+      align:left;
+  }
+  .img-width{
+      max-width: 30%;
   }

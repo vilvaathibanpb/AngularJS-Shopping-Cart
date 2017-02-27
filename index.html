@@ -1,21 +1,20 @@
+<!DOCTYPE html>
 <html ng-app="shoppingCart_app">
 <head>
+    <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-    <!--<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/> https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css-->
-    <link rel="stylesheet" type="text/css" href="css/shoppingcart.css"/>
-    <style>
-    /*.btn:focus,.btn:active {
-       outline: none !important;
-    }*/
-    </style>
+    <link rel="stylesheet" type="text/css" href="css/shoppingcart.css"/>    
+    <!-- / CSS -->
 </head>
 <body ng-controller="home_controller">
     <div class="container">
     <ng-view></ng-view>
     </div>
+    <!-- JS -->
     <script src="lib/js/angular.min.js"></script>
     <script src="lib/js/angular-route.min.js"></script>
     <script src="lib/js/ngStorage.min.js"></script>
     <script src="controllers/shopping_cart_controller.js"></script>
-    </body>
+    <!-- / JS -->
+</body>
 </html>

@@ -1,4 +1,5 @@
 var app=angular.module('shoppingCart_app', ['ngRoute']);
+//Routing 
 app.config(function($routeProvider) {
 	$routeProvider
 		.when('/home', {
@@ -13,26 +14,8 @@ app.config(function($routeProvider) {
 			redirectTo: '/home'
 		});
 });
-// app.run(function ($rootScope) {
-//     $rootScope.$on('$localstorage.set', function (event, data) {
-//         console.log("$localstorage.set", data);
-//     });
-// 	$rootScope.$on('$localstorage.get', function (event, data) {
-//         console.log("$localstorage.get", data);
-//     });
-// 	$rootScope.$on('$localstorage.setObject', function (event, data) {
-//         console.log("$localstorage.setObject", data);
-//     });
-// 	$rootScope.$on('$localstorage.getObject', function (event, data) {
-//         console.log("$localstorage.getObject", data);
-//     });
-// 	$rootScope.$on('$localstorage.remove', function (event, data) {
-//         console.log("$localstorage.remove", data);
-//     });
-// 	$rootScope.$on('$localstorage.clear', function (event, data) {
-//         console.log("$localstorage.clear", data);
-//     });
-// });
+
+//LocalStorage Services
 app.factory('$localstorage', ['$window', function($window) {
   return {
     set: function(key, value) {
@@ -59,6 +42,7 @@ app.factory('$localstorage', ['$window', function($window) {
   }
 }]);
 
+//Home_Controller
 app.controller('home_controller',['$scope','$http','$localstorage','$rootScopes',function($scope,$http,$localstorage,$rootScopes){
 	if($localstorage.getObject("Cart")){
 		$scope.cart=$localstorage.getObject("Cart");
@@ -67,6 +51,7 @@ app.controller('home_controller',['$scope','$http','$localstorage','$rootScopes'
 		$scope.cart=[]
 	}
 	$scope.cartvalue=$scope.cart.length;
+	//Add to Cart
 	$scope.addtocart=function($productid){
 		var id =$productid;
 		var exist = $scope.cart.some(function (el) {
@@ -84,6 +69,8 @@ app.controller('home_controller',['$scope','$http','$localstorage','$rootScopes'
 		$localstorage.setObject("Cart",$scope.cart);
 		$rootScopes.store("mycart_count",$scope.cart.length);
 	};
+	
+	//Fetch Input data
 	$http.get('../data.json').success(function(data) {    
         $scope.dummyproducts=data;
     }).error(function(e){
@@ -92,10 +79,11 @@ app.controller('home_controller',['$scope','$http','$localstorage','$rootScopes'
 	});
 		$scope.refresh_cache=function($image){
 		    $image=$image+"?"+Math.floor(Math.random())+Math.random();
-			return $image;
-			// return n;
+			return $image;			
 		};
 }]);
+
+//Cart Controller
 app.controller('cart_controller',['$scope','$localstorage','$http','$rootScopes',function($scope,$localstorage,$http,$rootScopes){
     if($localstorage.getObject("Cart")){
 		$scope.cart=$localstorage.getObject("Cart");
@@ -123,6 +111,7 @@ app.controller('cart_controller',['$scope','$localstorage','$http','$rootScopes'
 	}else{
 		$scope.productList=[];
 	}
+	//Remove product from cart
 	$scope.remove=function($productid){
 		$scope.cart.forEach(function(element) {
 			if(element.product_id==$productid){
@@ -144,27 +133,64 @@ app.controller('cart_controller',['$scope','$localstorage','$http','$rootScopes'
 		$rootScopes.store("mycart_count",$scope.cart.length);
 		$scope.cartvalue=$scope.cart.length;
 	}
+	//Complete Order
 	$scope.deletelocalstorage_on_checkout=function(){
 		$localstorage.clear();
 	}
+	//Update Price
 	$scope.calculate_price=function($product_id,$product_Price){
 		var product;
-		$scope.cart.forEach(function(cacheelement) {
-			console.log(cacheelement.product_id+" current but specified is "+$product_id+"and"+$product_Price+"is price and quantity is "+cacheelement.quantity);
-			if(cacheelement.product_id==$product_id){
-				console.log($product_Price+"is price and quantity inside  is "+cacheelement.quantity);
+		$scope.cart.forEach(function(cacheelement) {			
+			if(cacheelement.product_id==$product_id){		
 				product=$product_Price * cacheelement.quantity;		
 			}
 		}, this);
 		return product;
 	}
+
+	//Increment quantity
+	$scope.addqty=function($product_id){		
+		$scope.cart.forEach(function(cacheelement) {			
+			if(cacheelement.product_id==$product_id){
+				cacheelement.quantity=cacheelement.quantity + 1;
+			}
+		}, this);
+			$localstorage.setObject("Cart",$scope.cart);
+			$rootScopes.store("mycart_count",$scope.cart.length);
+			$scope.cartvalue=$scope.cart.length;
+	}
+	//Decrement quantity
+	$scope.subqty=function($product_id){		
+		$scope.cart.forEach(function(cacheelement) {			
+			if(cacheelement.product_id==$product_id){
+				if(cacheelement.quantity - 1 >= 1){
+				cacheelement.quantity=cacheelement.quantity - 1;
+				}else{
+					cacheelement.quantity=1;
+				}
+			}
+		}, this);
+		$localstorage.setObject("Cart",$scope.cart);
+		$rootScopes.store("mycart_count",$scope.cart.length);
+		$scope.cartvalue=$scope.cart.length;
+	}
+	//Get Quantity
+	$scope.getqty=function($product_id){
+		var qty;
+		$scope.cart.forEach(function(cacheelement) {			
+			if(cacheelement.product_id==$product_id){
+				qty= cacheelement.quantity;
+			}
+		}, this);
+		if(qty>0){
+		return qty;
+		}else{
+			return 1;
+		}
+	}
 }]);
 
-// // app.run(function ($rootScope) {
-// //     $rootScope.$on('$rootScopes.stored', function (event, data) {
-// //         console.log("$rootScopes.stored", data);
-// //     });
-// // });
+//RootScope services
 app.factory('$rootScopes', function ($rootScope) {
     var mem = {};
  
